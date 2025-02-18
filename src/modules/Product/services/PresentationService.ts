@@ -2,7 +2,7 @@ import Http from "@/utils/Http";
 import type { Presentation } from "../types/Presentation";
 
 export const getPresentations = (productId: string) => {  
-  return Http.get(`/api/presentations/${productId}/show-all`);
+  return Http.get(`/api/presentations/${productId}/all`);
 }
 
 export const insertPresentation = (payload: Presentation) => {   
