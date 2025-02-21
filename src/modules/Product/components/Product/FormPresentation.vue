@@ -46,6 +46,7 @@ const submit = async () => {
         </div-->      
         <div class="block">
           <AppTextarea
+            class="cursor-pointer"
             label="Empaque"
             v-model="form.packing_deployed"                
             @focus="isOpenModal = !isOpenModal"                

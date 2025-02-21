@@ -60,9 +60,12 @@ const { updateMeasureUnit } = inject<{
         />
       </div>
 
-      <div class="block">      
+      <div class="block">
+        <div v-if="!measureUnitTypes">
+          Cargando ...
+        </div>    
         <AppSelect
-          v-if="measureUnitTypes"
+          v-else
           v-model="form.measure_unit_type_id"
           label="Tipo de Unidad de Medida"
           :options="measureUnitTypes"
@@ -109,8 +112,8 @@ const { updateMeasureUnit } = inject<{
     <div class="mt-4 px-2 border-gray-100 flex justify-end space-x-2">
       <AppBtn
         type="submit"             
-        :text="pending ? 'Guardando...' : 'Guardar'"
-        :isDisabled='pending'
+        :text="sending ? 'Guardando...' : 'Guardar'"
+        :isDisabled='sending'
       />
     </div>
   </form>
