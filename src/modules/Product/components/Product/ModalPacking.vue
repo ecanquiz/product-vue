@@ -55,6 +55,7 @@ const {
           />
           
           <AppTextarea
+            class="cursor-not-allowed"
             label="Descripcción"
             v-model="form.packing_description"
             :error="v$.packing_description.$error ? v$.packing_description.$errors[0].$message : null"
