@@ -57,7 +57,7 @@ const {
               <td class="">
                 <AppLink
                   class="text-indigo-600 hover:text-indigo-800 underline"
-                  :to="{ name: 'userEdit', params: { id: row.id }}"                  
+                  :to="{ name: 'marksEdit', params: { id: row.id }}"                  
                 >
                   {{ row.name }}
                 </AppLink>
