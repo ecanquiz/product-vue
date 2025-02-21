@@ -18,9 +18,12 @@ export default defineConfig(({ mode }) => {
           }
         },
         define: {
+            // enable hydration mismatch details in production build
+            __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
             'process.env': {                    
               VITE_APP_API_URL: `${env.VITE_APP_API_URL}`,
-              VITE_APP_API_COMMON_URL: `${env.VITE_APP_API_COMMON_URL}`
+              VITE_COMMON_API_URL: `${env.VITE_COMMON_API_URL}`,
+              VITE_COMMON_API_SHARED_TOKEN: `${env.VITE_COMMON_API_SHARED_TOKEN}`              
             }
         },
         test: {

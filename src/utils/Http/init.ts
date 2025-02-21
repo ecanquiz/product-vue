@@ -22,13 +22,11 @@ export default<Init> {
 }
 
 export const commonInit: Init = {
-  baseURL: import.meta.env.VITE_APP_API_COMMON_URL, //process.env.VITE_APP_API_COMMON_URL,  
+  baseURL: import.meta.env.VITE_COMMON_API_URL, //process.env.VITE_APP_API_COMMON_URL,  
   withCredentials: false,
   withXSRFToken: false,
   customHeaders: { 
     //'Content-Type': 'application/json', 
-    'Authorization': `Bearer ${import.meta.env.VITE_API_SHARED_TOKEN}`
+    'Authorization': `Bearer ${import.meta.env.VITE_COMMON_API_SHARED_TOKEN}`
   }
 }
-
-//SHARED_API_TOKEN
