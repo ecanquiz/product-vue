@@ -23,7 +23,6 @@ export default (productId: string) => {
     packing_json: "",
     stock_min: 0,
     stock_max: 0,
-    price: "0.0",
     status: 0
   })
   
@@ -101,7 +100,6 @@ export default (productId: string) => {
     presentation.packing_json = presentationEdit.packing
     presentation.stock_min = presentationEdit.stock_min
     presentation.stock_max = presentationEdit.stock_max
-    presentation.price = presentationEdit.price
     presentation.status = presentationEdit.status ? 1 : 0
     panelOpened.value = true
   }

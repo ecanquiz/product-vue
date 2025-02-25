@@ -9,7 +9,6 @@ export interface Presentation {
     packing_json: string;
     stock_min?: number;
     stock_max?: number;
-    price?: string;
     status: number;
     photo_path?: string;
     _method?: 'PUT' 
