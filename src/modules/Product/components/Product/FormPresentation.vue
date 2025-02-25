@@ -35,15 +35,6 @@ const submit = async () => {
   <div>
     <form @submit.prevent="submit">
       <div class="p-5 grid lg:grid-cols-2 gap-4">    
-        <!--div class="block">  
-          <label>Tipo de Venta</label><br/>
-          <AppRadioGroup
-            v-model="form.sale_type"
-            name="sale_type"
-            :options="props.saleTypeOptions"
-            :error="v$.sale_type.$error ? v$.sale_type.$errors[0].$message : null"            
-          />
-        </div-->      
         <div class="block">
           <AppTextarea
             class="cursor-pointer"
@@ -57,15 +48,7 @@ const submit = async () => {
             v-model="form.packing_json"          
             type="hidden"          
           />                        
-        </div>      
-        <!--div class="block">
-          <AppInput
-            label="Código Interno"
-            v-model="form.int_cod"                     
-            type="text"
-            :error="v$.int_cod.$error ? v$.int_cod.$errors[0].$message : null"
-          />
-        </div-->      
+        </div>     
         <div class="block">
           <AppInput
             label="Código de Barra"
@@ -73,31 +56,7 @@ const submit = async () => {
             type="text"
             :error="v$.bar_cod.$error ? v$.bar_cod.$errors[0].$message : null"
           />
-        </div>      
-        <!--div class="block">
-          <AppInput
-            label="Stock Mínimo"
-            v-model="form.stock_min"                     
-            type="number"
-            :error="v$.stock_min.$error ? v$.stock_min.$errors[0].$message : null"
-          />
-        </div>      
-        <div class="block">        
-          <AppInput
-            label="Stock Máximo"
-            v-model="form.stock_max"                     
-            type="number"
-            :error="v$.stock_max.$error ? v$.stock_max.$errors[0].$message : null"
-          />
-        </div-->      
-        <div class="block"> 
-          <AppInput
-            label="Precio"
-            v-model="form.price"                     
-            type="text"
-            :error="v$.price.$error ? v$.price.$errors[0].$message : null"
-          />
-        </div>      
+        </div>
         <div class="block">             
           <AppRadioGroup
             v-model="form.status"

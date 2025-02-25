@@ -48,34 +48,24 @@ const uploadFile = (file) => {
 
 const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${presentation.photo_path}`
 
+const status = (s) => s ? 'Activo' : 'Inactivo';
 </script>
 
 <template>
   <div class="mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
     <table id="id_tab_presentacion" class="w-full text-sm text-left text-gray-500 dark:text-gray-400" width="100%">
       <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
-        <tr>          
-          <!--th class="px-6 py-3 bg-gray-50 bg-base-200">IntCod</th-->
-          <th class="px-6 py-3">BarCod</th>        
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">Empaque</th>
-          <th class="px-6 py-3">Precio</th>
-          <!--th class="px-6 py-3 bg-gray-50 bg-base-200">StockMin</th>
-          <th class="px-6 py-3">StockMax</th-->
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">Estatus</th>
-          <th class="px-6 py-3">Imagen</th>               
-          <th class="px-6 py-3">Acción(es)</th>
+        <tr>
+          <th class="px-6 py-3">Imagen</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200 text-center">CÓDIGO DE BARRA</th>        
+          <th class="px-6 py-3">Empaque</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200 text-center">Estatus</th>
+          <th class="px-6 py-3 text-center">Acción(es)</th>
         </tr>
       </thead>
       <tbody>      
-        <tr v-for="presentation in props.presentations" :key="presentation.id">             
-          <td class="px-6 py-3">{{presentation.bar_cod}}</td>
-          <!--td class="px-6 py-3">{{presentation.int_cod}}</td-->
-          <td class="px-6 py-3 bg-gray-50 bg-base-200" :id='presentation.packing'>{{presentation.packing_deployed}}</td>
-          <td class="px-6 py-3 text-right">{{presentation.price}}</td>
-          <!--td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{presentation.stock_min}}</td>
-          <td class="px-6 py-3 text-right">{{presentation.stock_max}}</td-->
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.status}}</td>
-          <td class="px-6 py-3 w-20">
+        <tr v-for="presentation in props.presentations" :key="presentation.id">
+          <td class="px-6 py-3 w-20 h-20">
             <img
               v-if="presentation.photo_path"
               class="m-auto hover:cursor-pointer"
@@ -87,8 +77,11 @@ const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${present
               class="w-7 h-7 m-auto fill-current hover:cursor-pointer"
               @click="imageUpload(presentation.id)"
             />
-          </td>  
-          <td class="px-6 py-3">
+          </td>           
+          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-center">{{ presentation.bar_cod }}</td>
+          <td class="px-6 py-3" :id='presentation.packing'>{{ presentation.packing_deployed }}</td>
+          <td class="px-6 py-3  bg-gray-50 bg-base-200 text-center">{{ status(presentation.status) }}</td>          
+          <td class="px-6 py-3 flex justify-center">
             <div class="flex items-center space-x-1">
              <AppBtn
                 class="btn btn-primary btn-xs"                    
