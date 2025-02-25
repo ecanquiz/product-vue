@@ -21,29 +21,41 @@ export default (measureUnit) => {
   
   const v$ = useVuelidate(rules, form);
 
-  let n = 0, i = 0, packingJson = []
-  const aConect = [ ' DE ', ' CON ' ] 
+  let position = 0, i = 0, packingJson = [], temp = 0;
+  const aConect = [ ' DE ', ' CON ', '' ];
 
-  const add = async (payload: { packing: string, quantity: number })=> {
-      let concatena1 = `${payload.packing} ${aConect[n++]} ${payload.quantity} `
-      let concatena2 = ((form.packing_description.trim() === "")
-        ? measureUnit.value
-          : form.packing_description)
-      form.packing_description = concatena1 + concatena2      
-      packingJson[i++] = `{"packing":"${payload.packing}","quantity":${payload.quantity}}`
-      form.packing_json = `[${packingJson}]`
-      if (n == 2)
-        n = 0;  
-  }  
+  const add = (payload: {packing: string, quantity: number}): void => {
+    const isntPackaged = ['N/A', 'GRANEL'].includes(payload.packing);
+    if (isntPackaged) {
+      payload.packing = '';
+      temp = position;
+      position = 2;
+    }
+     
+    let concatenate1 = `${payload.packing} ${aConect[position++]} ${payload.quantity} `;
+    let concatenate2 = form.packing_description.trim() === "" ? measureUnit.value : form.packing_description;
+
+    form.packing_description = concatenate1 + concatenate2;
+    packingJson[i++] = `{"packing":"${payload.packing}","quantity":${payload.quantity}}`;
+    form.packing_json = `[${packingJson}]`;
+
+    if (isntPackaged) {
+      position=temp;
+      temp=0;
+    }
+
+    if (position == 2)
+      position = 0;  
+  }
 
   const remove = ()=> { //cleanAfter()   
     form.packing_description = "";
     form.packing_json = "";
   }
 
-  const lastPacking = computed(()=> form.packing_description.split(" ")[0])
+  const lastPacking = computed(()=> form.packing_description.split(" ")[0]);
 
-  const labelOfquantity = computed(()=> "Cantidad de " + (form.packing_description=="" ? measureUnit.value : lastPacking.value))
+  const labelOfquantity = computed(()=> "Cantidad de " + (form.packing_description=="" ? measureUnit.value : lastPacking.value));
 
   return {
     form,
