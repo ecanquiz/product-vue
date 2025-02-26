@@ -114,6 +114,8 @@ export default defineComponent({
                         name="menu"
                         class="form-control"
                         v-model="form.name"
+                        @keyup="form.name = form.name.toUpperCase()"
+                        style="text-transform: uppercase;"
                         placeholder="Categoría..." />
                     </td>
                   </tr>
