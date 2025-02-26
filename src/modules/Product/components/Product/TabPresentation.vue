@@ -19,7 +19,8 @@ const {
   edit,
   getPresentations,
   remove,  
-  submit
+  submit,
+  togglePanel
 } = useTabPresentation(props.id)
 </script>
 
@@ -27,15 +28,15 @@ const {
   <div class="demo-tab">
     <div class="form-group row">
       <div class="col-sm-12">
-        <div align="center">     
+        <div align="center">
           <AppBtn
             class="btn p-8"
             type="text"                 
             data-testid="click-btn"
             :class="closeClassOpened"
             :text="`${closeButtonOpened} panel para agregar Presentación`"
-            @click="panelOpened=!panelOpened"
-          />      
+            @click="togglePanel"
+          />
           <FormPresentation
             v-if="panelOpened"
             class="bg-base-200 py-4 mt-2 rounded"

@@ -7,10 +7,10 @@ import type { Packing } from "../../types/Packing";
 export default (presentation: Presentation) => {  
   const form = reactive<Presentation>({
     id: presentation.id,
-    bar_cod: presentation.bar_cod ? presentation.bar_cod : 'N/A',
+    bar_cod: presentation.bar_cod,
     packing_deployed: presentation.packing_deployed,
     packing_json: presentation.packing_json,
-    status: presentation.status ? presentation.status : 1
+    status: presentation.status
   })
 
   const isOpenModal = ref(false)

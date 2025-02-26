@@ -16,14 +16,10 @@ export default (productId: string) => {
   
   const presentation: Presentation = reactive({
     id: '',
-    sale_type: 0,
-    int_cod: "",
-    bar_cod: "",
+    bar_cod: "N/A",
     packing_deployed: "",
     packing_json: "",
-    stock_min: 0,
-    stock_max: 0,
-    status: 0
+    status: 1
   })
   
   const presentations: Ref<Presentation[]>  = ref([])
@@ -90,19 +86,6 @@ export default (productId: string) => {
   const submit = (payload: Presentation) => {    
     !presentation.id ? insertPresentation (payload)  : updatePresentation(payload, presentation.id)
   }
-
-  const edit = (presentationEdit: Presentation) => {
-    presentation.id = presentationEdit.id
-    presentation.sale_type = presentationEdit.sale_type ? 1 : 0
-    presentation.int_cod = presentationEdit.int_cod
-    presentation.bar_cod = presentationEdit.bar_cod
-    presentation.packing_deployed = presentationEdit.packing_deployed
-    presentation.packing_json = presentationEdit.packing
-    presentation.stock_min = presentationEdit.stock_min
-    presentation.stock_max = presentationEdit.stock_max
-    presentation.status = presentationEdit.status ? 1 : 0
-    panelOpened.value = true
-  }
   
   const remove = async (presentationId: string) => {
     if (presentationId === undefined)
@@ -123,6 +106,24 @@ export default (productId: string) => {
     }
   }
 
+  const edit = (p: Presentation) => {
+    presentation.id = p.id
+    presentation.bar_cod = p.bar_cod
+    presentation.packing_deployed = p.packing_deployed
+    presentation.packing_json = p.packing
+    presentation.status = p.status
+    panelOpened.value = true
+  }
+
+  const togglePanel = () => {
+    presentation.id = "";
+    presentation.bar_cod = "N/A";
+    presentation.packing_deployed = "";
+    presentation.packing_json = "";
+    presentation.status = 1;
+    panelOpened.value=!panelOpened.value;
+  }
+
   return {
     panelOpened,
     closeButtonOpened,
@@ -135,6 +136,7 @@ export default (productId: string) => {
     edit,
     getPresentations,
     remove, 
-    submit
+    submit,
+    togglePanel
   }
 }
