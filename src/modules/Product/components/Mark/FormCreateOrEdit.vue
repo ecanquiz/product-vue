@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from "vue"
+import { reactive, watch } from "vue"
 import type { Mark } from "../../types/Mark"
 
 // import type Errors from "../../types/Errors"
@@ -34,6 +34,8 @@ const submit = async () => {
           label="Name"
           type="text"
           :error="errors && errors.name ? errors.name[0] : ''"
+          @keyup="form.name = form.name.toUpperCase()"
+          style="text-transform: uppercase;"
         />
       </div>
     </div>

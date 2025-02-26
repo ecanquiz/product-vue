@@ -103,7 +103,9 @@ const { updateMeasureUnit } = inject<{
         <AppInput          
           v-model="form.name"          
           label="Nombre del Producto"
-          type="text"          
+          type="text"
+          @keyup="form.name = form.name.toUpperCase()"
+          style="text-transform: uppercase;"
           :error="v$.name.$error ? v$.name.$errors[0].$message : null"
         />   
       </div>

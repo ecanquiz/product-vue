@@ -54,6 +54,8 @@ const submit = async () => {
             label="Código de Barra"
             v-model="form.bar_cod"                     
             type="text"
+            @keyup="form.bar_cod = form.bar_cod.toUpperCase()"
+            style="text-transform: uppercase;"
             :error="v$.bar_cod.$error ? v$.bar_cod.$errors[0].$message : null"
           />
         </div>
